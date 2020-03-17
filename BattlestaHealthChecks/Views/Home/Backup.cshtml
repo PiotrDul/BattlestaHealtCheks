@@ -1,0 +1,40 @@
+﻿@model BattlestaHealthChecks.Models.BackupSettings
+
+<form asp-action="BackupNow">
+    <div class="form-group">
+        <input value="backup_now" name="backup" type="hidden"  class="form-control" />
+        <input type="submit" value="Wykonaj backup teraz" class="btn btn-outline-success" />
+    </div>
+</form>
+
+<h4>Ustawienia wykonywania backupu</h4>
+<p>Data ostatniego backupu : @Model.LastDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="BackupSave">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="HourInterval" class="control-label">Interwał czasowy (w godzinach) co jaki będzie wykonywany backup systemu</label>
+                <input asp-for="HourInterval" min="1" step="1" class="form-control" />
+                <span asp-validation-for="HourInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CredentialPath" class="control-label">Ścieżka do pliku credentials.json odpowiedzialnego za backup </label>
+                <input asp-for="CredentialPath"  class="form-control" />
+                <span asp-validation-for="CredentialPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz ustawienia" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ShowSettings">Powrót</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

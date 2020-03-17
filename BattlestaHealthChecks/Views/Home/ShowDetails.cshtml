@@ -1,0 +1,41 @@
+﻿@model BattlestaHealthChecks.ViewModels.SampleViewModel
+
+    <h1>Szczegóły testu z dnia @Html.DisplayFor(model => model.Date)</h1>
+<br />
+    <div>
+        @*<dl class="row">
+            <dt class="col-sm-2">
+                Data
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-sm-2">
+            </dt>
+            <dd class="col-sm-10">
+
+            </dd>
+        </dl>*@
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><b>Sprawdzany element</b></td>
+                    <td><b>Czas wczytania elementu w sekundach</b></td>
+                    <td><b>Adres Url</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var element in Model.Elements)
+                {
+                    <tr>
+                        <td>@element.Name</td>
+                        <td>@element.LoadTime</td>
+                        <td>@element.Url</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+<div>
+    <a asp-action="Index">Powrót</a>
+</div>

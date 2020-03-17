@@ -1,0 +1,46 @@
+﻿@model BattlestaHealthChecks.Models.SampleSettings
+
+<a class="text-dark" asp-area="" asp-controller="Home" asp-action="Backup">Ustawienia backup</a>
+
+<h4>Ustawienia testów:</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="SaveSettings">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TimeInterval" class="control-label">Interwał czasowy (w minutach) co jaki będą wykonywane testy </label>
+                <input asp-for="TimeInterval" min="10" step="10" class="form-control" />
+                <span asp-validation-for="TimeInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxLoadTime" class="control-label">Czas (w sekundach) ładowania strony po którego przekroczeniu zostanie wysłany mail informacyjny</label>
+                <input asp-for="MaxLoadTime" min="1" step="0.1" class="form-control" />
+                <span asp-validation-for="MaxLoadTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartPage" class="control-label">Adres strony od której zostanie wykonany test</label>
+                <input asp-for="StartPage" class="form-control" />
+                <span asp-validation-for="StartPage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Adres email na który mają przychodzić powiadomienia</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz ustawienia" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

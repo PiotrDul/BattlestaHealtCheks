@@ -1,0 +1,38 @@
+﻿@*@model IEnumerable<BattlestaHealthChecks.ViewModels.SampleViewModel>*@
+@model ReflectionIT.Mvc.Paging.PagingList<BattlestaHealthChecks.Models.Sample>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+
+<h1>Lista wykonanych testów</h1>
+<nav aria-label="Products navigation example">
+    @await  this.Component.InvokeAsync("Pager", new {pagingList = this.Model })
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data testu
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Zobacz szczegóły", "ShowDetails", "Home", new { sampleId = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav>
+    <vc:pager paging-list="@Model"/>
+</nav>
+
+
